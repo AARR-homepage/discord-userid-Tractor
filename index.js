@@ -133,7 +133,7 @@
     container.style.width = initialWidth;
     container.style.height = initialHeight;
     container.style.display = 'none';
-    container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; // 背景画像を設定
+    container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; 
     container.style.backgroundSize = 'cover'; 
     container.style.backgroundPosition = 'center'; 
     document.body.appendChild(container);
