@@ -32,7 +32,7 @@
                 el.style.left = newX + 'px';
                 el.style.top = newY + 'px';
 
-                // Update background position
+                
                 const backgroundX = initialBoxPosition.x - newX;
                 const backgroundY = initialBoxPosition.y - newY;
                 el.style.backgroundPosition = `${backgroundX}px ${backgroundY}px`;
@@ -125,7 +125,7 @@
     container.style.position = 'fixed';
     container.style.top = initialBoxPosition.y + 'px';
     container.style.left = initialBoxPosition.x + 'px';
-    container.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明に変更
+    container.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
     container.style.color = '#ffffff';
     container.style.padding = '5px';
     container.style.borderRadius = '5px';
@@ -134,8 +134,8 @@
     container.style.height = initialHeight;
     container.style.display = 'none';
     container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; // 背景画像を設定
-    container.style.backgroundSize = 'cover'; // 背景画像をカバーに設定
-    container.style.backgroundPosition = 'center'; // 背景画像の初期位置を設定
+    container.style.backgroundSize = 'cover'; 
+    container.style.backgroundPosition = 'center'; 
     document.body.appendChild(container);
 
     makeElementDraggable(container);
@@ -145,7 +145,7 @@
     title.textContent = 'AARR Extracted UIDs';
     title.style.margin = '0 0 5px 0';
     title.style.fontSize = '15px';
-    title.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明に変更
+    title.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
     container.appendChild(title);
 
     const toolsLink = document.createElement('a');
@@ -156,7 +156,7 @@
     toolsLink.style.display = 'inline-block';
     toolsLink.style.marginBottom = '10px';
     toolsLink.style.fontSize = '12px';
-    toolsLink.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明に変更
+    toolsLink.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     container.appendChild(toolsLink);
 
     const uidList = document.createElement('ul');
@@ -165,7 +165,7 @@
     uidList.style.fontSize = '10px';
     uidList.style.height = 'calc(100% - 120px)';
     uidList.style.overflowY = 'scroll';
-    uidList.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明に変更
+    uidList.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
     container.appendChild(uidList);
 
     const startButton = document.createElement('button');
@@ -293,7 +293,7 @@
                 const listItem = document.createElement('li');
                 listItem.textContent = uid;
                 listItem.style.color = 'green';
-                listItem.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明に変更
+                listItem.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
                 uidList.appendChild(listItem);
             }
         });
@@ -362,7 +362,7 @@
     document.body.appendChild(toggleImage);
 
     function adjustToggleImagePosition() {
-        // 必要に応じてトグル画像の位置を調整
+        
     }
 
     toggleImage.addEventListener('click', () => {
