@@ -18,6 +18,19 @@
     let isBoxVisible = false;
     let initialBoxPosition = { x: 80, y: 120 };
 
+    
+    let isBackgroundEnabled = localStorage.getItem('isBackgroundEnabled') === 'true';
+
+    function updateBackgroundState() {
+        if (isBackgroundEnabled) {
+            container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; // 背景画像を設定
+            container.style.backgroundSize = 'cover'; 
+            container.style.backgroundPosition = 'center'; 
+        } else {
+            container.style.backgroundImage = 'none'; 
+        }
+    }
+
     function makeElementDraggable(el) {
         el.onmousedown = function(event) {
             event.preventDefault();
@@ -133,9 +146,7 @@
     container.style.width = initialWidth;
     container.style.height = initialHeight;
     container.style.display = 'none';
-    container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; 
-    container.style.backgroundSize = 'cover'; 
-    container.style.backgroundPosition = 'center'; 
+    updateBackgroundState(); 
     document.body.appendChild(container);
 
     makeElementDraggable(container);
@@ -156,7 +167,7 @@
     toolsLink.style.display = 'inline-block';
     toolsLink.style.marginBottom = '10px';
     toolsLink.style.fontSize = '12px';
-    toolsLink.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    toolsLink.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
     container.appendChild(toolsLink);
 
     const uidList = document.createElement('ul');
@@ -165,7 +176,7 @@
     uidList.style.fontSize = '10px';
     uidList.style.height = 'calc(100% - 120px)';
     uidList.style.overflowY = 'scroll';
-    uidList.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; 
+    uidList.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     container.appendChild(uidList);
 
     const startButton = document.createElement('button');
@@ -273,6 +284,35 @@
     };
     container.appendChild(saveButton);
 
+   
+    const toggleBackgroundButton = document.createElement('button');
+    toggleBackgroundButton.textContent = isBackgroundEnabled ? '背景無効' : '背景有効';
+    toggleBackgroundButton.style.marginTop = '5px';
+    toggleBackgroundButton.style.padding = '2px 5px';
+    toggleBackgroundButton.style.fontSize = '10px';
+    toggleBackgroundButton.style.backgroundColor = 'rgba(87, 87, 87, 0.5)';
+    toggleBackgroundButton.style.color = '#ffffff';
+    toggleBackgroundButton.style.border = 'none';
+    toggleBackgroundButton.style.borderRadius = '3px';
+    toggleBackgroundButton.style.cursor = 'pointer';
+    toggleBackgroundButton.style.transition = 'color 0.3s, background-color 0.3s';
+    toggleBackgroundButton.onmouseenter = () => {
+        toggleBackgroundButton.style.backgroundColor = isBackgroundEnabled ? 'rgba(244, 67, 54, 0.5)' : 'rgba(76, 175, 80, 0.5)';
+        toggleBackgroundButton.style.color = '#ffffff';
+    };
+    toggleBackgroundButton.onmouseleave = () => {
+        toggleBackgroundButton.style.backgroundColor = 'rgba(87, 87, 87, 0.5)';
+        toggleBackgroundButton.style.color = '#ffffff';
+    };
+    container.appendChild(toggleBackgroundButton);
+
+    toggleBackgroundButton.addEventListener('click', () => {
+        isBackgroundEnabled = !isBackgroundEnabled;
+        localStorage.setItem('isBackgroundEnabled', isBackgroundEnabled);
+        updateBackgroundState();
+        toggleBackgroundButton.textContent = isBackgroundEnabled ? '背景無効' : '背景有効';
+    });
+
     function extractUIDs() {
         const avatarElements = document.querySelectorAll('img[src*="cdn.discordapp.com/avatars/"]');
         const uids = new Set();
@@ -362,7 +402,7 @@
     document.body.appendChild(toggleImage);
 
     function adjustToggleImagePosition() {
-        
+       
     }
 
     toggleImage.addEventListener('click', () => {
