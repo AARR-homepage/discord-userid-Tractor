@@ -16,6 +16,7 @@
 
     let observer;
     let isBoxVisible = false;
+    let initialBoxPosition = { x: 80, y: 120 };
 
     function makeElementDraggable(el) {
         el.onmousedown = function(event) {
@@ -25,8 +26,16 @@
             let shiftY = event.clientY - el.getBoundingClientRect().top;
 
             function moveAt(pageX, pageY) {
-                el.style.left = Math.min(Math.max(0, pageX - shiftX), window.innerWidth - el.offsetWidth) + 'px';
-                el.style.top = Math.min(Math.max(0, pageY - shiftY), window.innerHeight - el.offsetHeight) + 'px';
+                const newX = Math.min(Math.max(0, pageX - shiftX), window.innerWidth - el.offsetWidth);
+                const newY = Math.min(Math.max(0, pageY - shiftY), window.innerHeight - el.offsetHeight);
+                
+                el.style.left = newX + 'px';
+                el.style.top = newY + 'px';
+
+                // Update background position
+                const backgroundX = initialBoxPosition.x - newX;
+                const backgroundY = initialBoxPosition.y - newY;
+                el.style.backgroundPosition = `${backgroundX}px ${backgroundY}px`;
             }
 
             function onMouseMove(event) {
@@ -114,8 +123,8 @@
     const container = document.createElement('div');
     container.id = 'uidContainer';
     container.style.position = 'fixed';
-    container.style.top = '120px';
-    container.style.left = '80px';
+    container.style.top = initialBoxPosition.y + 'px';
+    container.style.left = initialBoxPosition.x + 'px';
     container.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // 半透明に変更
     container.style.color = '#ffffff';
     container.style.padding = '5px';
@@ -126,6 +135,7 @@
     container.style.display = 'none';
     container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; // 背景画像を設定
     container.style.backgroundSize = 'cover'; // 背景画像をカバーに設定
+    container.style.backgroundPosition = 'center'; // 背景画像の初期位置を設定
     document.body.appendChild(container);
 
     makeElementDraggable(container);
