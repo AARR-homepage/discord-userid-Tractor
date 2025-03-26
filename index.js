@@ -23,7 +23,7 @@
 
     function updateBackgroundState() {
         if (isBackgroundEnabled) {
-            container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")'; // 背景画像を設定
+            container.style.backgroundImage = 'url("https://pbs.twimg.com/media/EI1PjdXVAAAeVaq?format=jpg&name=large")';
             container.style.backgroundSize = 'cover'; 
             container.style.backgroundPosition = 'center'; 
         } else {
